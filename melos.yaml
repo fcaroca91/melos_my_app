@@ -1,0 +1,52 @@
+name: my_melos_config
+
+repository: https://github.com/fcaroca91/qr_flutter
+
+packages:
+  - my_package_app/*
+  - my_main_app/*
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+  version:
+    branch: master
+    linkToCommits: true
+    workspaceChangelog: true
+    #updateGitTagRefs: true
+    message: |
+      chore: cut package releases 🎉
+
+      {new_package_versions}
+
+
+scripts:
+  pre-build: melos exec -- 
+  postbootstrap: melos exec -- flutter pub run build_runner build --delete-conflicting-outputs
+  # postbootstrap: melos run pbp && melos run pbm
+  
+  # pbp:
+  #   run: melos exec --fail-fast -- flutter pub run build_runner build --delete-conflicting-outputs
+  #   select-package: 
+  #     scope: 'my_package_app'
+
+  # pbm:
+  #   run: melos exec -- flutter pub run build_runner build --delete-conflicting-outputs
+  #   select-package: 
+  #     scope: 'my_main_app'
+
+ide:
+  intellij: false
+
+
+  #postbootstrap: melos exec -- "flutter pub run build_runner build --delete-conflicting-outputs"
+
+
+# scripts:
+#   pre-build:
+#     run: melos exec -- "flutter pub run build_runner build --delete-conflicting-outputs"
+#     select-package:
+#       flutter: true
+# scripts:
+#   postbootstrap: melos exec -- "flutter pub run build_runner build --delete-conflicting-outputs"
+ 
